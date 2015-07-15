@@ -1,0 +1,30 @@
+name: wakfu
+version: 1
+handle:
+- rewrite: if ( path ~ "framework") goto "index.php"
+- rewrite: if ( path ~ "protected") goto "index.php"
+- rewrite: if ( !is_dir() && !is_file() ) goto "index.php?%{QUERY_STRING}"
+- compress: if ( out_header["Content-type"] ~ "text/css" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/javascript" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/html" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/plain" ) compress
+- compress: if ( out_header["Content-type"] ~ "image/jpeg" ) compress
+- compress: if ( out_header["Content-type"] ~ "image/png" ) compress
+- compress: if ( out_header["Content-type"] ~ "image/pjpeg" ) compress
+- compress: if ( out_header["Content-type"] ~ "image/gif" ) compress
+- compress: if ( out_header["Content-type"] ~ "image/bmp" ) compress
+- compress: if ( out_header["Content-type"] ~ "application/x-shockwave-flash" ) compress
+- compress: if ( out_header["Content-type"] ~ "application/pdf" ) compress
+- compress: if ( out_header["Content-type"] ~ "application/msword" ) compress
+- compress: if ( out_header["Content-type"] ~ "application/vnd.ms-excel" ) compress
+- compress: if ( out_header["Content-type"] ~ "application/vnd.ms-powerpoint" ) compress
+- expire:  if( path ~ "assets" ) time 2592000
+- expire:  if( path ~ "favicon.ico" ) time 2592000
+
+cron:
+- description: view
+  url: /cron/view
+  schedule: "0 * * * *"
+- description: pac
+  url: /cron/pac
+  schedule: "1 0 1 * *"
