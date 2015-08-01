@@ -6,16 +6,16 @@ return array(
 
 	'import'=>array(
 		'application.models.*',
-        'application.models.form.*',
+        	'application.models.form.*',
 		'application.components.*',
-        'application.components.filters.*',
-        'ext.*',
+        	'application.components.filters.*',
+        	'ext.*',
 	),
 
 	'modules'=>array(
-        'admin' => array(
-            'class' => 'application.modules.admin.AdminModule'
-        )
+	        'admin' => array(
+	            'class' => 'application.modules.admin.AdminModule'
+	        )
 	),
 
 	'components'=>array(
@@ -29,12 +29,12 @@ return array(
 			'showScriptName' => false,
 			'urlSuffix' => '',
 			'rules'=>array(
-                array('index/index','pattern' => 'index'),
-                array('index/register','pattern' => 'register'),
-                array('index/forget','pattern' => 'forget'),
-                array('index/captcha','pattern' => 'captcha'),
-                array('index/dashboard','pattern' => 'dashboard'),
-                array('index/error','pattern' => 'error'),
+		                array('index/index','pattern' => 'index'),
+		                array('index/register','pattern' => 'register'),
+		                array('index/forget','pattern' => 'forget'),
+		                array('index/captcha','pattern' => 'captcha'),
+		                array('index/dashboard','pattern' => 'dashboard'),
+		                array('index/error','pattern' => 'error'),
 			),
 		),
 
@@ -42,7 +42,7 @@ return array(
 			'connectionMaster' => 'mysql:host='.SAE_MYSQL_HOST_M.';port='.SAE_MYSQL_PORT.';dbname='.SAE_MYSQL_DB,
 			'connectionSlave' => 'mysql:host='.SAE_MYSQL_HOST_S.';port='.SAE_MYSQL_PORT.';dbname='.SAE_MYSQL_DB,
 			'emulatePrepare' => true,
-            'schemaCachingDuration' => 86400,
+        		'schemaCachingDuration' => 86400,
 			'username' => SAE_MYSQL_USER,
 			'password' => SAE_MYSQL_PASS,
 			'charset' => 'utf8',
@@ -59,8 +59,8 @@ return array(
 
         'email' => array(
             'class' => 'SaeEmail',
-            'account' => 'toruneko@sina.com',
-            'password' => '041025hehe'
+            'account' => '',
+            'password' => ''
         ),
 
         'concurrenceQueue'=>array(
@@ -72,7 +72,7 @@ return array(
             'class' => 'ThriftClient',
             'service' => array(
                 // 服务名 => 服务所在URL
-                'wakfuservice' => 'http://proxy.toruneko.net:9356/wakfu',
+                'wakfuservice' => '',
             ),
         ),
 		

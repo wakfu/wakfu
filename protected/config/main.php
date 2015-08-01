@@ -6,10 +6,10 @@ return array(
 
 	'import'=>array(
 		'application.models.*',
-        'application.models.form.*',
+        	'application.models.form.*',
 		'application.components.*',
-        'application.components.filters.*',
-        'ext.*',
+        	'application.components.filters.*',
+        	'ext.*',
 	),
 
 	'modules'=>array(
@@ -27,51 +27,51 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			'allowAutoLogin' => true,
-            'stateKeyPrefix' => 'wakfu',
+            		'stateKeyPrefix' => 'wakfu',
 			'guestName' => '游客',
 		),
 
 		'urlManager'=>array(
 			'urlFormat'=>'path',
-		    'showScriptName'=>false,
+		    	'showScriptName'=>false,
 			'rules'=>array(
-                array('index/index','pattern' => 'index'),
-                array('index/register','pattern' => 'register'),
-                array('index/forget','pattern' => 'forget'),
-                array('index/captcha','pattern' => 'captcha'),
+		                array('index/index','pattern' => 'index'),
+		                array('index/register','pattern' => 'register'),
+		                array('index/forget','pattern' => 'forget'),
+		                array('index/captcha','pattern' => 'captcha'),
 				array('index/dashboard','pattern' => 'dashboard'),
-                array('index/error','pattern' => 'error'),
+		                array('index/error','pattern' => 'error'),
 			),
 		),
 
 		'db'=>array(
 			'connectionString' => 'mysql:host=127.0.0.1;dbname=wakfu',
 			'emulatePrepare' => true,
-            'schemaCachingDuration' => 86400,
+		        'schemaCachingDuration' => 86400,
 			'username' => 'root',
 			'password' => 'toruneko',
 			'charset' => 'utf8',
 		),
 
-        'cache'=>array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 11211,
-                    'weight' => 100,
-                ),
-            )
-        ),
+	        'cache'=>array(
+	            'class' => 'CMemCache',
+	            'useMemcached' => true,
+	            'servers' => array(
+	                array(
+	                    'host' => '127.0.0.1',
+	                    'port' => 11211,
+	                    'weight' => 100,
+	                ),
+	            )
+	        ),
 
-        'thrift' => array(
-            'class' => 'ThriftClient',
-            'service' => array(
-                //服务名 => 服务所在URL
-                //'wakfuservice' => 'http://proxy.toruneko.net:9356/wakfu',
-            ),
-        ),
+	        'thrift' => array(
+	            'class' => 'ThriftClient',
+	            'service' => array(
+	                //服务名 => 服务所在URL
+	                //'wakfuservice' => '',
+	            ),
+	        ),
 		
 		'errorHandler'=>array(
 			'errorAction'=>'index/error',
