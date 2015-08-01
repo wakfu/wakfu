@@ -31,6 +31,7 @@ return array(
 			'rules'=>array(
                 array('index/index','pattern' => 'index'),
                 array('index/register','pattern' => 'register'),
+                array('index/forget','pattern' => 'forget'),
                 array('index/captcha','pattern' => 'captcha'),
                 array('index/dashboard','pattern' => 'dashboard'),
                 array('index/error','pattern' => 'error'),
@@ -56,6 +57,12 @@ return array(
             'name' => 'serialQueue',
         ),
 
+        'email' => array(
+            'class' => 'SaeEmail',
+            'account' => 'toruneko@sina.com',
+            'password' => '041025hehe'
+        ),
+
         'concurrenceQueue'=>array(
             'class' => 'SaeQueue',
             'name' => 'concurrence',
@@ -65,7 +72,7 @@ return array(
             'class' => 'ThriftClient',
             'service' => array(
                 // 服务名 => 服务所在URL
-                'wakfuservice' => 'http://123.57.74.156:888/wakfu',
+                'wakfuservice' => 'http://proxy.toruneko.net:9356/wakfu',
             ),
         ),
 		

@@ -30,11 +30,16 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-md-offset-2 col-xs-4 col-sm-4 col-md-4">
+            <div class="col-sm-offset-2 col-md-offset-2 col-xs-2 col-sm-2 col-md-2">
                 <div class="checkbox">
                     <label>
                         <?php echo $form->checkBox($model,'remember'); ?>记住我
                     </label>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="checkbox">
+                    <a href="<?php echo $this->createUrl('index/forget'); ?>">忘记密码</a>
                 </div>
             </div>
             <div class="col-xs-3 col-sm-2 col-md-2">

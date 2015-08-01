@@ -31,13 +31,15 @@ body{padding-top:50px;}
 </head>
 <body>
     <div class="container">
-        <div class="row"><div class="col-md-12 text-center">内测结束，服务已暂停，将于近期开放公测。</div></div>
         <?php echo $content; ?>
     </div>
     <div class="container">
     	<div class="row">
     		<div id="copyright">
-    			<p>&copy; <?php echo date('Y')?> 夸父 版权所有，保留所有权利。 </p>
+    			<p>
+                    &copy; <?php echo date('Y')?> 夸父 版权所有，保留所有权利。
+                    <a href="http://www.miitbeian.gov.cn">浙ICP备15026355号-1</a>
+                </p>
     		</div>
     	</div>
     </div>

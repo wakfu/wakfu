@@ -108,14 +108,15 @@ class ApiController extends RedController{
     }
 
     private function pac($service){
+        $server = $this->wakfuService->getServerByIp($service->server);
         if($service->status == 3){ //幸存模式
             $pac = 'function FindProxyForURL(url, host) { return "SOCKS5 '.$service->server.':'.$service->port.'; SOCKS '.$service->server.':'.$service->port.'" }';
         }else{
-            $pac = $this->wakfuService->pac($service->server, $service->port, $service->rules);
+            $pac = $this->wakfuService->pac($server, $service->port, $service->rules);
         }
         if(!empty($pac)){
             $storage = new SaeStorage();
-            $filename = substr(md5($service->server.":".$service->port),8,16).'.pac';
+            $filename = substr(md5($server.":".$service->port),8,16).'.pac';
             $url = $storage->write('pac', $filename, $pac, -1, array('type' => 'application/x-ns-proxy-autoconfig'));
             if($url != false){
                 if($service->pac != $url){
@@ -123,7 +124,7 @@ class ApiController extends RedController{
                     if(!$service->save()){
                         Yii::log("[".$service->uid."]API::PAC save failed", CLogger::LEVEL_INFO);
                     }else{
-                        $this->createChromeBak($url, $service->server, $service->port);
+                        $this->createChromeBak($url, $server, $service->port);
                     }
                 }
 
@@ -166,7 +167,8 @@ class ApiController extends RedController{
 
     public function actionChrome(){
         $service = $this->getServiceByUid();
-        $this->createChromeBak($service->pac, $service->server, $service->port);
+        $server = $this->wakfuService->getServerByIp($service->server);
+        $this->createChromeBak($service->pac, $server, $service->port);
     }
 
     private function getServiceByUid(){

@@ -16,6 +16,7 @@ class PacAction extends RedAction{
         $pager->setPageSize(20);
         $condition['offset'] = $pager->getOffset();
         $condition['limit'] = $pager->getLimit();
+        $condition['order'] = 'uid asc';
         $data = $model->findAll($condition);
         $this->render('pac', array(
             'data' => new RedArrayDataProvider($data),

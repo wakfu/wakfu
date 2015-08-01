@@ -87,6 +87,11 @@ class RegisterForm extends CFormModel{
             return false;
         }
 
+        $email = $app->getComponent('email');
+        if(!empty($email)){
+            $email->quickSend($this->username, '欢迎您注册夸父', "请妥善保管好您的登录密码：".$this->password);
+        }
+
         return true;
     }
 }

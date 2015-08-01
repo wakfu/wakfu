@@ -50,10 +50,11 @@ class IndexController extends RedController{
         $model = new RegisterForm();
 
         if(($post = $this->request->getPost('RegisterForm', false)) != false){
+            $post['password'] = $this->grantePassword();
             $model->attributes = $post;
             if($model->save()){
                 $login = new LoginForm();
-                $post['remember'] = 1;
+                $post['remember'] = 0;
                 unset($post['verifyCode']);
                 $login->attributes = $post;
                 if($login->validate() && $login->login()){
@@ -65,6 +66,30 @@ class IndexController extends RedController{
         }
 
         $this->render('register',array('model' => $model));
+    }
+
+    public function actionForget(){
+        $this->layout = '/layouts/index';
+        $model = new ForgetForm();
+
+        if(($post = $this->request->getPost('ForgetForm', false)) != false){
+            $post['password'] = $this->grantePassword();
+            $model->attributes = $post;
+            if($model->save()){
+                $this->render('forget',array(
+                    'model' => $model,
+                    'success' => true
+                ));
+            }else{
+                $this->render('forget',array(
+                    'model' => $model,
+                    'success' => false
+                ));
+            }
+            return;
+        }
+
+        $this->render('forget',array('model' => $model));
     }
 
     public function actionDashboard(){
@@ -103,10 +128,32 @@ class IndexController extends RedController{
 
     public function allowGuest(){
         $actionId = $this->getAction()->getId();
-        $arr = array('index','register','captcha','error');
+        $arr = array('index','register','captcha','error','forget');
         if(in_array($actionId, $arr)) return true;
         if(Yii::app()->user->isGuest){
             $this->redirect($this->createUrl('index'));
         }
+    }
+
+    private function grantePassword( $length = 10 ) {
+        // 密码字符集，可任意添加你需要的字符
+        $chars = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+            'i', 'j', 'k', 'l','m', 'n', 'p', 'q', 'r', 's',
+            't', 'u', 'v', 'w', 'x', 'y','z', 'A', 'B', 'C', 'D',
+            'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L','M', 'N',
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y','Z',
+            '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+        // 在 $chars 中随机取 $length 个数组元素键名
+        shuffle($chars);
+        $keys = array_rand($chars, $length);
+        $password = '';
+        foreach($keys as $key){
+            $password .= $chars[$key];
+        }
+
+        return $password;
     }
 }

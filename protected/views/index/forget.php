@@ -21,13 +21,16 @@ $('#verifyCode').on('click', function (){
 ");
 ?>
 <div class="panel panel-default">
-    <div class="panel-heading">注 册</div>
+    <div class="panel-heading">找回密码</div>
     <div class="panel-body">
         <?php $form = $this->beginWidget('CActiveForm',array(
             'htmlOptions' => array(
                 'class' => 'form-horizontal'
             ),
         ));?>
+        <div class="text-center"><?php if(isset($success)) {
+                echo $success ? "正在发送新的密码至您的邮箱，请耐心等待" : "找回密码出错";
+            }?></div>
         <div class="form-group">
             <?php echo $form->labelEx($model,'username',array('class'=>'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
             <div class="col-xs-9 col-sm-8 col-md-8">
@@ -60,7 +63,7 @@ $('#verifyCode').on('click', function (){
                 <?php echo CHtml::link('返回',$this->createUrl('index/index'),array('class' => 'btn btn-outline btn-primary'))?>
             </div>
             <div class="col-xs-3 col-sm-2 col-md-2">
-                <?php echo CHtml::submitButton('注册',array('class' => 'btn btn-outline btn-primary')); ?>
+                <?php echo CHtml::submitButton('提交',array('class' => 'btn btn-outline btn-primary')); ?>
             </div>
         </div>
         <?php $this->endWidget();?>

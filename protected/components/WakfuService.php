@@ -31,14 +31,14 @@ class WakfuService{
     }
 
     public function create(){
-        $server = $this->getRandomServer();
+        $ip = $this->getRandomIp();
         $port = $this->getRandomPort();
         $client = new WakfuServiceClient(null);
         try{
             Yii::app()->thrift->build($client);
-            if($client->create($server,$port)){
+            if($client->create($ip,$port)){
                 $this->savePort($port);
-                return array($server, $port);
+                return array($ip, $port);
             }else{
                 return false;
             }
@@ -70,11 +70,11 @@ class WakfuService{
         }
     }
 
-    public function pac($ip, $port, $rules){
+    public function pac($server, $port, $rules){
         $client = new WakfuServiceClient(null);
         try{
             Yii::app()->thrift->build($client);
-            return $client->pac($ip, $port, $rules);
+            return $client->pac($server, $port, $rules);
         }catch (Exception $e){
             Yii::log($e->getMessage(),CLogger::LEVEL_ERROR);
             return null;
@@ -96,9 +96,18 @@ class WakfuService{
         return array_pop($diffList);
     }
 
-    private function getRandomServer(){
-        $server = Setting::model()->get('wakfu','server');
+    private function getRandomIp(){
+        $server = Setting::model()->get('wakfu','ip');
         shuffle($server);
         return array_pop($server);
+    }
+
+    private function getServerByIp($ip){
+        $server = Setting::model()->get('wakfu','server');
+        if(isset($server[$ip])){
+            return $server[$ip];
+        }else{
+            return $ip;
+        }
     }
 }

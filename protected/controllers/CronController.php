@@ -21,12 +21,13 @@ class CronController extends RedController{
             echo "Failed";
         }
     }
-//
+
 //    public function actionCreate(){
 //        $services = Service::model()->findAll();
 //        $task = array();
 //        $url = $this->app->createUrl('api/create');
 //        foreach($services as $service){
+//            if($service->uid == 1) continue;
 //            $task[] = Queue::createTask($url, $service->uid);
 //        }
 //
