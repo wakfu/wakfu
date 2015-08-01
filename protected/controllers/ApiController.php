@@ -173,7 +173,8 @@ class ApiController extends RedController{
 
     private function getServiceByUid(){
         $accessKey = $this->request->getPost('accessKey',false);
-        if($accessKey != 'IiAg4okR7GZWM1QCRUSI8SsvpVt5zDlJ'){
+        $secretKey = Yii::app()->params['secretKey'];
+        if($accessKey != $secretKey){
             Yii::log("[".$accessKey."]API accessKey auth fail", CLogger::LEVEL_INFO);
             Yii::app()->end();
         }

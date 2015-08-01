@@ -7,7 +7,7 @@
  */
 class Queue{
 
-    private static $accessKey = 'IiAg4okR7GZWM1QCRUSI8SsvpVt5zDlJ';
+    private static $accessKey = null;
     private static $queue = null;
     private static $concurrenceQueue = null;
 
@@ -26,6 +26,9 @@ class Queue{
     }
 
     public static function createTask($url, $uid){
+        if(empty(self::$accessKey)){
+            self::$accessKey = Yii::app()->params['secretKey'];
+        }
         return array(
             'url' => $url,
             'postdata' => 'uid='.$uid.'&accessKey='.self::$accessKey

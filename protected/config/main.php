@@ -90,6 +90,7 @@ return array(
 	'params'=>array(
         'upload' => dirname(realpath($_SERVER['SCRIPT_FILENAME'])).DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR,
         'version' => 'V1.0',
+        'secretKey' => '',
         //上下级权限检测
         'allowCheck' => array(
             'auth' => array(
