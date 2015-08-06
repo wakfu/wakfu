@@ -102,7 +102,7 @@ class WakfuService{
         return array_pop($server);
     }
 
-    private function getServerByIp($ip){
+    public function getServerByIp($ip){
         $server = Setting::model()->get('wakfu','server');
         if(isset($server[$ip])){
             return $server[$ip];
