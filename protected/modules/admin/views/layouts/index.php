@@ -5,6 +5,7 @@
  * date:2014-7-12
  * desc: 管理区主视图
  */
+$this->cs->registerPackage('echarts');
 $this->cs->registerPackage('bootstrap');
 $this->cs->registerPackage('admin');
 $this->cs->registerPackage('facebox');

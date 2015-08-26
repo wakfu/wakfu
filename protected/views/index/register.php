@@ -35,6 +35,13 @@ $('#verifyCode').on('click', function (){
                 <?php echo $form->error($model,'username');?>
             </div>
         </div>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'password',array('class'=>'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
+            <div class="col-xs-9 col-sm-8 col-md-8">
+                <?php echo $form->textField($model,'password',array('class' => 'form-control'))?>
+                <?php echo $form->error($model,'password');?>
+            </div>
+        </div>
         <?php if(CCaptcha::checkRequirements()){ ?>
             <div class="form-group">
                 <?php echo $form->labelEx($model,'verifyCode',array('class'=>'col-xs-3 col-sm-2 col-md-2 control-label')); ?>

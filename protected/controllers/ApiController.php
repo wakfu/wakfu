@@ -21,18 +21,14 @@ class ApiController extends RedController{
     }
 
     private function create($service){
-        $data = $this->wakfuService->create();
-        if(is_array($data)){
-            $service->server = $data[0];
-            $service->port = $data[1];
-            if($service->save()){
-                //$this->open($service);
-                $this->pac($service);
-            }else{
-                Yii::log("[".$service->uid."]API::CREATE save failed", CLogger::LEVEL_INFO);
-            }
+        $service->server = $this->wakfuService->getRandomIp();
+        $service->port = $this->wakfuService->getRandomPort();
+        $this->wakfuService->savePort($service->port);
+        if($service->save()){
+            //$this->open($service);
+            $this->pac($service);
         }else{
-            Yii::log("[".$service->uid."]API::CREATE failure", CLogger::LEVEL_INFO);
+            Yii::log("[".$service->uid."]API::CREATE save failed", CLogger::LEVEL_INFO);
         }
     }
 
@@ -42,16 +38,12 @@ class ApiController extends RedController{
     }
 
     private function remove($service){
-        if($this->wakfuService->remove($service->server, $service->port)){
-            $service->server = "";
-            $service->port = 0;
-            $service->pac = "";
-            $service->status = 1;
-            if(!$service->save()){
-                Yii::log("[".$service->uid."]API::REMOVE save failed", CLogger::LEVEL_INFO);
-            }
-        }else{
-            Yii::log("[".$service->uid."]API::REMOVE failure", CLogger::LEVEL_INFO);
+        $service->server = "";
+        $service->port = 0;
+        $service->pac = "";
+        $service->status = 1;
+        if(!$service->save()){
+            Yii::log("[".$service->uid."]API::REMOVE save failed", CLogger::LEVEL_INFO);
         }
     }
 

@@ -30,35 +30,6 @@ class WakfuService{
         }
     }
 
-    public function create(){
-        $ip = $this->getRandomIp();
-        $port = $this->getRandomPort();
-        $client = new WakfuServiceClient(null);
-        try{
-            Yii::app()->thrift->build($client);
-            if($client->create($ip,$port)){
-                $this->savePort($port);
-                return array($ip, $port);
-            }else{
-                return false;
-            }
-        }catch (Exception $e){
-            Yii::log($e->getMessage(),CLogger::LEVEL_ERROR);
-            return false;
-        }
-    }
-
-    public function remove($ip, $port){
-        $client = new WakfuServiceClient(null);
-        try{
-            Yii::app()->thrift->build($client);
-            return $client->remove($ip, $port);
-        }catch (Exception $e){
-            Yii::log($e->getMessage(),CLogger::LEVEL_ERROR);
-            return false;
-        }
-    }
-
     public function view($ip, $port){
         $client = new WakfuServiceClient(null);
         try{
@@ -81,13 +52,13 @@ class WakfuService{
         }
     }
 
-    private function savePort($port){
+    public function savePort($port){
         $except = Setting::model()->get('wakfu','except');
         $except[] = $port;
         return Setting::model()->set('wakfu','except', $except);
     }
 
-    private function getRandomPort(){
+    public function getRandomPort(){
         $except = Setting::model()->get('wakfu','except');
         $port = Setting::model()->get('wakfu','port');
         $list = range($port[0], $port[1]);
@@ -96,7 +67,7 @@ class WakfuService{
         return array_pop($diffList);
     }
 
-    private function getRandomIp(){
+    public function getRandomIp(){
         $server = Setting::model()->get('wakfu','ip');
         shuffle($server);
         return array_pop($server);

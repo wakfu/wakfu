@@ -183,4 +183,8 @@ return array(
 		'depends'=>array('bootstrap'),
 		'css' => array('index.css')
 	),
+    'echarts'=>array(
+        'js'=>array('echarts-all.js'),
+        'baseUrl'=>'http://cdn.bootcss.com/echarts/2.2.3'
+    ),
 );

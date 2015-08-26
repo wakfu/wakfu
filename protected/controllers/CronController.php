@@ -39,7 +39,7 @@ class CronController extends RedController{
 //    }
 
     public function actionView(){
-        $services = Service::model()->findAll();
+        $services = Service::model()->findAllByAttributes(array('status' => 0));
         $task = array();
         $url = $this->app->createUrl('api/view');
         foreach($services as $service){

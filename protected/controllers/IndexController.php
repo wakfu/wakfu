@@ -50,7 +50,6 @@ class IndexController extends RedController{
         $model = new RegisterForm();
 
         if(($post = $this->request->getPost('RegisterForm', false)) != false){
-            $post['password'] = $this->grantePassword();
             $model->attributes = $post;
             if($model->save()){
                 $login = new LoginForm();
@@ -128,7 +127,7 @@ class IndexController extends RedController{
 
     public function allowGuest(){
         $actionId = $this->getAction()->getId();
-        $arr = array('index','register','captcha','error','forget');
+        $arr = array('index','captcha','error','forget');
         if(in_array($actionId, $arr)) return true;
         if(Yii::app()->user->isGuest){
             $this->redirect($this->createUrl('index'));

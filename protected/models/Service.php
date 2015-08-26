@@ -74,7 +74,7 @@ class Service extends RedActiveRecord
 			'pac' => 'PAC',
 			'server' => 'Server',
 			'port' => 'Port',
-			'rules' => '用户规则',
+			'rules' => '用户自定义规则',
 			'status' => 'Status',
 		);
 	}

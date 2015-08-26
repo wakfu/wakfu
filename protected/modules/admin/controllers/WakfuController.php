@@ -10,7 +10,8 @@ class WakfuController extends Controller{
     public function getActions(){
         return array(
             'service','traffic','pac',
-            'switch','reset','purchase'
+            'switch','reset','purchase',
+            'statistics'
         );
     }
 

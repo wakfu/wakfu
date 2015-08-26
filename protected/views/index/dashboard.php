@@ -24,7 +24,10 @@ $('#form').on('click','a',function(){
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading"><span><a class="btn btn-default" href="<?php echo $this->createUrl('index/logout'); ?>">登出</a></span>夸 父（用户群：455902676）</div>
+            <div class="panel-heading">
+                <span><a class="btn btn-default" href="<?php echo $this->createUrl('index/logout'); ?>">登出</a></span>
+                夸 父
+            </div>
             <div class="panel-body">
                 <table class="table table-hover">
                     <thead>
@@ -33,7 +36,6 @@ $('#form').on('click','a',function(){
                         <td>总流量</td>
                         <td>最近使用</td>
                         <td>剩余流量</td>
-                        <td>资费</td>
                         <td>注册时间</td>
                         <td>服务状态</td>
                     </tr>
@@ -44,7 +46,6 @@ $('#form').on('click','a',function(){
                         <td><?php echo number_format($service->traffic / 100000, 2); ?>GB</td>
                         <td><?php echo number_format($service->left / 100000, 2); ?>GB</td>
                         <td><?php echo number_format(($service->traffic - $service->left) / 100000, 2); ?>GB</td>
-                        <td>1元/GB</td>
                         <td><?php echo date('Y-m-d H:i:s',$service->getRelated('user')->sign_up_time); ?></td>
                         <td><?php echo $this->getStatusDisplay($service->status); ?></td>
                     </tr>

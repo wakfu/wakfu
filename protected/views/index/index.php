@@ -46,9 +46,9 @@
                 <?php echo CHtml::submitButton('进入',array('class' => 'btn btn-outline btn-primary')); ?>
             </div>
             
-            <div class="col-xs-3 col-sm-2 col-md-2">
-                <?php echo CHtml::link('注册',$this->createUrl('index/register'),array('class' => 'btn btn-outline btn-primary'))?>
-            </div>
+            <!--<div class="col-xs-3 col-sm-2 col-md-2">
+                <?php //echo CHtml::link('注册',$this->createUrl('index/register'),array('class' => 'btn btn-outline btn-primary'))?>
+            </div>-->
         </div>
         <?php $this->endWidget();?>
     </div>
