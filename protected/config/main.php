@@ -47,28 +47,6 @@ return [
             ],
         ],
 
-//        'fraudmetrix' => [
-//            'class' => 'ext.fraudmetrix.Fraudmetrix',
-//            'partnerCode' => 'kf_Qox',
-//            'secretKey' => '0c09a4607edf4bc0b1f7ce83a2ecb85d'
-//        ],
-//
-//        'queue'=>[
-//            'class' => 'SaeQueue',
-//            'name' => 'serialQueue',
-//        ],
-//
-//        'email' => [
-//            'class' => 'SaeEmail',
-//            'account' => 'toruneko@sina.com',
-//            'password' => '041025hehe'
-//        ],
-//
-//        'concurrenceQueue'=>[
-//            'class' => 'SaeQueue',
-//            'name' => 'concurrence',
-//        ],
-
         'db' => [
             'connectionString' => 'mysql:host=127.0.0.1;dbname=wakfu',
             'emulatePrepare' => true,
