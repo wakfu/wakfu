@@ -1,14 +1,17 @@
 <?php
+
 /**
  * File: PacAction.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/6/3 11:20
- * Description: 
+ * Description:
  */
-class PacAction extends RedAction{
+class PacAction extends RedAction
+{
 
-    public function run(){
-        $query = $this->request->getPost('Service', array());
+    public function run()
+    {
+        $query = $this->request->getQuery('Service', []);
         $model = Service::model();
         $model->attributes = $query;
         $condition = $this->createSearchCriteria($query);
@@ -16,12 +19,12 @@ class PacAction extends RedAction{
         $pager->setPageSize(20);
         $condition['offset'] = $pager->getOffset();
         $condition['limit'] = $pager->getLimit();
-        $condition['order'] = 'uid asc';
+        $condition['order'] = 'status asc, uid asc';
         $data = $model->findAll($condition);
-        $this->render('pac', array(
+        $this->render('pac', [
             'data' => new RedArrayDataProvider($data),
             'pager' => $pager,
             'model' => $model,
-        ));
+        ]);
     }
 }

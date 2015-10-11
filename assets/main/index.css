@@ -1,7 +1,42 @@
 @CHARSET "UTF-8";
 
 @media screen and (max-width: 1000px) {
-    .jumbotron{
-        display:none;
+    .hidden-1000 {
+        display: none;
     }
+}
+
+@media screen and (max-width: 768px) {
+    .hidden-768 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hidden-600 {
+        display: none;
+    }
+}
+
+body {
+    padding-top: 50px;
+}
+
+textarea.form-control {
+    resize: none;
+    height: 150px;
+}
+
+.form-control-static {
+    word-wrap: break-word;
+}
+
+.main-container {
+    margin-top: 40px;
+}
+
+#copyright {
+    font-size: 14px;
+    color: #777;
+    text-align: center;
 }

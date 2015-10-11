@@ -3,9 +3,9 @@
  * File: purchase.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/6/7 18:07
- * Description: 
+ * Description:
  */
-$this->cs->registerScript('purchaseForm',"
+$this->cs->registerScript('purchaseForm', "
 $('#purchaseform').on('click','input[type=submit]',function(){
     var form = $('#purchaseform');
     $.post(form.attr('action'),form.serialize(),function(m){
@@ -18,21 +18,22 @@ $('#purchaseform').on('click','input[type=submit]',function(){
     return false;
 });
 ");
-$form = $this->beginWidget('CActiveForm',array(
+$form = $this->beginWidget('CActiveForm', [
     'id' => 'purchaseform',
     'action' => $this->createUrl('wakfu/purchase'),
-    'htmlOptions' => array(
+    'htmlOptions' => [
         'class' => 'form-horizontal'
-    )
-)); ?>
-<div class="form-group">
-    <input type="hidden" name="uid" value="<?php echo $uid; ?>" />
-    <label class="col-xs-3 col-sm-3 col-md-3 control-label">购买流量</label>
-    <div class="col-xs-5 col-sm-5 col-md-5">
-        <input class="form-control" type="text" name="traffic" placeholder="单位：M"/>
+    ]
+]); ?>
+    <div class="form-group">
+        <input type="hidden" name="uid" value="<?php echo $uid; ?>"/>
+        <label class="col-xs-3 col-sm-3 col-md-3 control-label">购买流量</label>
+
+        <div class="col-xs-5 col-sm-5 col-md-5">
+            <input class="form-control" type="text" name="traffic" placeholder="单位：M"/>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1">
+            <?php echo CHtml::submitButton('购买', ['class' => 'btn btn-default']); ?>
+        </div>
     </div>
-    <div class="col-xs-1 col-sm-1 col-md-1">
-        <?php echo CHtml::submitButton('购买',array('class' => 'btn btn-default')); ?>
-    </div>
-</div>
-<?php $this->endWidget();?>
+<?php $this->endWidget(); ?>

@@ -3,7 +3,7 @@
  * File: userList.php
  * User: daijianhao@zhubajie.com
  * Date: 14-8-18 11:52
- * Description: 
+ * Description:
  */
 ?>
 <tr>
@@ -16,6 +16,6 @@
     <td><?php echo $data->port; ?></td>
     <td><?php echo $this->getStatusDisplay($data->status); ?></td>
     <td>
-        <?php echo CHtml::link('<span class="glyphicon glyphicon-off"></span>',$this->createUrl('wakfu/switch',array('id' => $data->uid)),array('title' => '开关'))?>
+        <?php echo CHtml::link('<span class="glyphicon glyphicon-off"></span>', $this->createUrl('wakfu/switch', ['id' => $data->uid]), ['title' => '开关']) ?>
     </td>
 </tr>

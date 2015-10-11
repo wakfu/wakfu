@@ -1,6 +1,8 @@
 name: wakfu
 version: 1
 handle:
+- rewrite: if (path ~ "/pac/(.*)") goto "http://assets.toruneko.net/pac/$1"
+- rewrite: if (path ~ "/chrome/(.*)") goto "http://assets.toruneko.net/chrome/$1"
 - rewrite: if ( path ~ "framework") goto "index.php"
 - rewrite: if ( path ~ "protected") goto "index.php"
 - rewrite: if ( !is_dir() && !is_file() ) goto "index.php?%{QUERY_STRING}"
@@ -25,6 +27,9 @@ cron:
 - description: view
   url: /cron/view
   schedule: "0 * * * *"
+- description: view
+  url: /cron/save
+  schedule: "0 3 * * *"
 - description: pac
   url: /cron/pac
   schedule: "1 0 1 * *"

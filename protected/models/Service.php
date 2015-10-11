@@ -37,15 +37,13 @@ class Service extends RedActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('uid, email', 'required'),
-			array('uid, traffic, used, left, port, status', 'numerical', 'integerOnly'=>true),
-			array('email, server', 'length', 'max'=>255),
-			array('pac, rules', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('uid, email, traffic, used, left, pac, server, port, rules, status', 'safe', 'on'=>'search'),
-		);
+		return [
+			['uid, email', 'required'],
+			['uid, traffic, used, left, port, status', 'numerical', 'integerOnly'=>true],
+			['email, server', 'length', 'max'=>255],
+			['pac, rules', 'safe'],
+			['uid, email, traffic, used, left, pac, server, port, rules, status', 'safe', 'on'=>'search'],
+		];
 	}
 
 	/**
@@ -55,9 +53,9 @@ class Service extends RedActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-            'user' => array(CActiveRecord::BELONGS_TO, 'User', 'uid'),
-		);
+		return [
+            'user' => [CActiveRecord::BELONGS_TO, 'User', 'uid'],
+		];
 	}
 
 	/**
@@ -65,7 +63,7 @@ class Service extends RedActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
+		return [
 			'uid' => 'Uid',
 			'email' => 'Email',
 			'traffic' => 'Traffic',
@@ -76,7 +74,7 @@ class Service extends RedActiveRecord
 			'port' => 'Port',
 			'rules' => '用户自定义规则',
 			'status' => 'Status',
-		);
+		];
 	}
 
 	/**
@@ -108,9 +106,9 @@ class Service extends RedActiveRecord
 		$criteria->compare('rules',$this->rules,true);
 		$criteria->compare('status',$this->status);
 
-		return new CActiveDataProvider($this, array(
+		return new CActiveDataProvider($this, [
 			'criteria'=>$criteria,
-		));
+		]);
 	}
 
 	/**

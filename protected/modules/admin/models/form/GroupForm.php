@@ -1,11 +1,13 @@
 <?php
+
 /**
  * File: GroupForm.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/5/9 00:15
- * Description: 
+ * Description:
  */
-class GroupForm extends CFormModel{
+class GroupForm extends CFormModel
+{
     public $id;
     public $name;
     public $description;
@@ -16,43 +18,46 @@ class GroupForm extends CFormModel{
     public $action;
     public $sort;
 
-    public function rules(){
+    public function rules()
+    {
         $labels = $this->attributeLabels();
-        return array(
-            array('name', 'required','message' => '请输入'.$labels['name']),
-            array('id, status', 'numerical', 'integerOnly'=>true),
-            array('description, module, controller, action, sort', 'safe'),
-        );
+        return [
+            ['name', 'required', 'message' => '请输入' . $labels['name']],
+            ['id, status', 'numerical', 'integerOnly' => true],
+            ['description, module, controller, action, sort', 'safe'],
+        ];
     }
 
-    public function attributeLabels(){
-        return array(
+    public function attributeLabels()
+    {
+        return [
             'name' => '名称',
             'description' => '描述',
             'status' => '禁用',
-        );
+        ];
     }
 
-    public function save(){
+    public function save()
+    {
 
-        try{
-            if($this->id){
+        try {
+            if ($this->id) {
                 $model = Group::model()->findByPk($this->id);
-                if(empty($model)) throw new CDbException('参数出错', 1, array());
-            }else{
+                if (empty($model)) throw new CDbException('参数出错', 1, []);
+            } else {
                 $model = new Group();
             }
 
-            $model->attributes = array(
+            $model->attributes = [
                 'name' => $this->name,
                 'description' => $this->description,
                 'status' => $this->status
-            );
+            ];
 
-            if($model->save() === false)
-                throw new CDbException('更新用户出错',2,$model->getErrors());
+            if ($model->save() === false)
+                throw new CDbException('更新用户出错', 2, $model->getErrors());
 
-        }catch (CDbException $e){
+        } catch (CDbException $e) {
             $this->addErrors($e->errorInfo);
             return false;
         }

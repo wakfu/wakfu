@@ -3,9 +3,9 @@
  * File: statistics.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/8/13 22:00
- * Description: 
+ * Description:
  */
-$this->cs->registerScript('echarts',"
+$this->cs->registerScript('echarts', "
 function getSaleStockOption(data){
     return  {
         tooltip : {

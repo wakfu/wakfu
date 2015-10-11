@@ -3,7 +3,7 @@
  * File: userList.php
  * User: daijianhao@zhubajie.com
  * Date: 14-8-18 11:52
- * Description: 
+ * Description:
  */
 ?>
 <tr>
@@ -13,6 +13,6 @@
     <td><?php echo number_format($data->used / 100, 2); ?></td>
     <td><?php echo number_format(($data->traffic - $data->left) / 100, 2); ?></td>
     <td>
-        <?php echo CHtml::link('<span class="glyphicon glyphicon-plus"></span>',$this->createUrl('wakfu/purchase',array('uid' => $data->uid)),array('title' => '购买'))?>
+        <?php echo CHtml::link('<span class="glyphicon glyphicon-plus"></span>', $this->createUrl('wakfu/purchase', ['uid' => $data->uid]), ['title' => '购买']) ?>
     </td>
 </tr>

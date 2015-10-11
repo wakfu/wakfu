@@ -1,27 +1,30 @@
 <?php
+
 /**
  * File: SwitchAction.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/6/3 11:36
- * Description: 
+ * Description:
  */
-class SwitchAction extends RedAction{
+class SwitchAction extends RedAction
+{
 
-    public function run(){
+    public function run()
+    {
         $uid = $this->request->getQuery('id', 0);
         $service = Service::model()->findByPk($uid);
-        if(!empty($service)){
-            if(in_array($service->status, array(1,2))){ // 不可用状态
+        if (!empty($service)) {
+            if (in_array($service->status, [1, 2])) { // 不可用状态
                 $task = Queue::createTask($this->app->createUrl('api/open'), $uid);
-            }else{
+            } else {
                 $task = Queue::createTask($this->app->createUrl('api/close'), $uid);
             }
-            if(Queue::enqueue($task)){
+            if (Queue::enqueue($task)) {
                 $this->response(200, ':) success');
-            }else{
+            } else {
                 $this->response(200, ':( failure');
             }
-        }else{
+        } else {
             $this->response(404, 'Not Found');
         }
     }

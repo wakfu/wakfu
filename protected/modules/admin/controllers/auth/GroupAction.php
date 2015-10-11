@@ -1,23 +1,27 @@
 <?php
+
 /**
  * File: GroupAction.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/5/8 11:56
  * Description: 用户组管理
  */
-class GroupAction extends AuthAction{
+class GroupAction extends AuthAction
+{
 
-    public function model(){
+    public function model()
+    {
         return Group::model();
     }
 
-    public function execute(){
-        $this->render('index',array(
+    public function execute()
+    {
+        $this->render('index', [
             'name' => '用户组管理',
             'asyncUrl' => $this->createUrl('auth/group'),
             'createUrl' => $this->createUrl('auth/groupCreate'),
             'editUrl' => $this->createUrl('auth/groupEdit'),
             'removeUrl' => $this->createUrl('auth/groupRemove'),
-        ));
+        ]);
     }
 }

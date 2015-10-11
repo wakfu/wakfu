@@ -3,7 +3,7 @@
  * File: accountList.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/5/9 10:36
- * Description: 
+ * Description:
  */
 ?>
 <tr>
@@ -13,7 +13,7 @@
     <td><?php echo $data->email; ?></td>
     <td><?php echo $data->state == 1 ? '禁用' : '正常'; ?></td>
     <td>
-        <?php echo CHtml::link('<span class="glyphicon glyphicon-remove"></span>',$this->createUrl($viewTag['url'],
-            array('user' => $data->id,'auth' => $viewTag['id'])),array('title' => '移除'))?>
+        <?php echo CHtml::link('<span class="glyphicon glyphicon-remove"></span>', $this->createUrl($viewTag['url'],
+            ['user' => $data->id, 'auth' => $viewTag['id']]), ['title' => '移除']) ?>
     </td>
 </tr>

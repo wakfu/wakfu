@@ -2,7 +2,9 @@ $(document).ready(function(){
 
     $(document).on('click','#form input[type=submit]',function(){
         var form = $('#form');
-        $.post(form.attr('action'),form.serialize(),function(m){
+        var method = form.attr('method');
+        var action = method == 'post' ? $.post : $.get;
+        action(form.attr('action'),form.serialize(),function(m){
             if(m.status){
                 $.facebox(m.info);
             }else{

@@ -3,9 +3,9 @@
  * File: register.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 15/6/7 14:28
- * Description: 
+ * Description:
  */
-$this->cs->registerScript('captcha',"
+$this->cs->registerScript('captcha', "
 $('#verifyCode').on('click', function (){
     $.ajax({
         url: '/captcha?refresh=1',
@@ -23,34 +23,34 @@ $('#verifyCode').on('click', function (){
 <div class="panel panel-default">
     <div class="panel-heading">注 册</div>
     <div class="panel-body">
-        <?php $form = $this->beginWidget('CActiveForm',array(
+        <?php $form = $this->beginWidget('CActiveForm', array(
             'htmlOptions' => array(
                 'class' => 'form-horizontal'
             ),
-        ));?>
+        )); ?>
         <div class="form-group">
-            <?php echo $form->labelEx($model,'username',array('class'=>'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
+            <?php echo $form->labelEx($model, 'username', array('class' => 'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
             <div class="col-xs-9 col-sm-8 col-md-8">
-                <?php echo $form->textField($model,'username',array('class' => 'form-control'))?>
-                <?php echo $form->error($model,'username');?>
+                <?php echo $form->textField($model, 'username', array('class' => 'form-control')) ?>
+                <?php echo $form->error($model, 'username'); ?>
             </div>
         </div>
         <div class="form-group">
-            <?php echo $form->labelEx($model,'password',array('class'=>'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
+            <?php echo $form->labelEx($model, 'password', array('class' => 'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
             <div class="col-xs-9 col-sm-8 col-md-8">
-                <?php echo $form->textField($model,'password',array('class' => 'form-control'))?>
-                <?php echo $form->error($model,'password');?>
+                <?php echo $form->passwordField($model, 'password', array('class' => 'form-control')) ?>
+                <?php echo $form->error($model, 'password'); ?>
             </div>
         </div>
-        <?php if(CCaptcha::checkRequirements()){ ?>
+        <?php if (false && CCaptcha::checkRequirements()) { ?>
             <div class="form-group">
-                <?php echo $form->labelEx($model,'verifyCode',array('class'=>'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
+                <?php echo $form->labelEx($model, 'verifyCode', array('class' => 'col-xs-3 col-sm-2 col-md-2 control-label')); ?>
                 <div class="col-xs-4 col-sm-5 col-md-5">
-                    <?php echo $form->textField($model,'verifyCode',array('class' => 'form-control'))?>
-                    <?php echo $form->error($model,'verifyCode');?>
+                    <?php echo $form->textField($model, 'verifyCode', array('class' => 'form-control')) ?>
+                    <?php echo $form->error($model, 'verifyCode'); ?>
                 </div>
                 <div class="col-xs-4 col-sm-2 col-md-2">
-                    <?php $this->widget('CCaptcha',array(
+                    <?php $this->widget('CCaptcha', array(
                         'showRefreshButton' => false,
                         'clickableImage' => false,
                         'imageOptions' => array(
@@ -64,12 +64,12 @@ $('#verifyCode').on('click', function (){
         <?php } ?>
         <div class="form-group">
             <div class="col-xs-offset-4 col-sm-offset-6 col-md-offset-6 col-xs-3 col-sm-2 col-md-2">
-                <?php echo CHtml::link('返回',$this->createUrl('index/index'),array('class' => 'btn btn-outline btn-primary'))?>
+                <?php echo CHtml::link('返回', $this->createUrl('index/index'), array('class' => 'btn btn-outline btn-primary')) ?>
             </div>
             <div class="col-xs-3 col-sm-2 col-md-2">
-                <?php echo CHtml::submitButton('注册',array('class' => 'btn btn-outline btn-primary')); ?>
+                <?php echo CHtml::submitButton('注册', array('class' => 'btn btn-outline btn-primary')); ?>
             </div>
         </div>
-        <?php $this->endWidget();?>
+        <?php $this->endWidget(); ?>
     </div>
 </div>

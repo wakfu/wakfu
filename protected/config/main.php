@@ -1,118 +1,144 @@
 <?php
-return array(
-	'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name' => "夸父",
-	'preload' => array('log'),
+return [
+    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'name' => "夸父",
+    'preload' => ['log'],
 
-	'import'=>array(
-		'application.models.*',
-        	'application.models.form.*',
-		'application.components.*',
-        	'application.components.filters.*',
-        	'ext.*',
-	),
+    'import' => [
+        'application.models.*',
+        'application.models.form.*',
+        'application.components.*',
+        'application.components.filters.*',
+        'ext.*',
+        'ext.fraudmetrix.*',
+    ],
 
-	'modules'=>array(
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'admin',
-			'ipFilters'=>array('127.0.0.1','::1'),
-		),
-			
-		'admin' => array(
-			'class' => 'application.modules.admin.AdminModule'
-		)
-	),
+    'modules' => [
+        'gii' => [
+            'class' => 'system.gii.GiiModule',
+            'password' => 'admin',
+            'ipFilters' => ['127.0.0.1', '::1'],
+        ],
 
-	'components'=>array(
-		'user'=>array(
-			'allowAutoLogin' => true,
-            		'stateKeyPrefix' => 'wakfu',
-			'guestName' => '游客',
-		),
+        'admin' => [
+            'class' => 'application.modules.admin.AdminModule'
+        ]
+    ],
 
-		'urlManager'=>array(
-			'urlFormat'=>'path',
-		    	'showScriptName'=>false,
-			'rules'=>array(
-		                array('index/index','pattern' => 'index'),
-		                array('index/register','pattern' => 'register'),
-		                array('index/forget','pattern' => 'forget'),
-		                array('index/captcha','pattern' => 'captcha'),
-				array('index/dashboard','pattern' => 'dashboard'),
-		                array('index/error','pattern' => 'error'),
-			),
-		),
+    'components' => [
+        'user' => [
+            'allowAutoLogin' => true,
+            'stateKeyPrefix' => 'wakfu',
+            'guestName' => '游客',
+        ],
 
-		'db'=>array(
-			'connectionString' => 'mysql:host=127.0.0.1;dbname=wakfu',
-			'emulatePrepare' => true,
-		        'schemaCachingDuration' => 86400,
-			'username' => 'root',
-			'password' => 'toruneko',
-			'charset' => 'utf8',
-		),
+        'urlManager' => [
+            'urlFormat' => 'path',
+            'showScriptName' => false,
+            'rules' => [
+                ['index/index', 'pattern' => 'index'],
+                ['index/register', 'pattern' => 'register'],
+                ['index/forget', 'pattern' => 'forget'],
+                ['index/captcha', 'pattern' => 'captcha'],
+                ['index/dashboard', 'pattern' => 'dashboard'],
+                ['index/account','pattern' => 'account'],
+                ['index/billing', 'pattern' => 'billing'],
+                ['index/error', 'pattern' => 'error'],
+            ],
+        ],
 
-	        'cache'=>array(
-	            'class' => 'CMemCache',
-	            'useMemcached' => true,
-	            'servers' => array(
-	                array(
-	                    'host' => '127.0.0.1',
-	                    'port' => 11211,
-	                    'weight' => 100,
-	                ),
-	            )
-	        ),
+//        'fraudmetrix' => [
+//            'class' => 'ext.fraudmetrix.Fraudmetrix',
+//            'partnerCode' => 'kf_Qox',
+//            'secretKey' => '0c09a4607edf4bc0b1f7ce83a2ecb85d'
+//        ],
+//
+//        'queue'=>[
+//            'class' => 'SaeQueue',
+//            'name' => 'serialQueue',
+//        ],
+//
+//        'email' => [
+//            'class' => 'SaeEmail',
+//            'account' => 'toruneko@sina.com',
+//            'password' => '041025hehe'
+//        ],
+//
+//        'concurrenceQueue'=>[
+//            'class' => 'SaeQueue',
+//            'name' => 'concurrence',
+//        ],
 
-	        'thrift' => array(
-	            'class' => 'ThriftClient',
-	            'service' => array(
-	                //服务名 => 服务所在URL
-	                //'wakfuservice' => '',
-	            ),
-	        ),
-		
-		'errorHandler'=>array(
-			'errorAction'=>'index/error',
-		),
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning, info',
-				),
-			),
-		),
-	),
+        'db' => [
+            'connectionString' => 'mysql:host=127.0.0.1;dbname=wakfu',
+            'emulatePrepare' => true,
+            'schemaCachingDuration' => 86400,
+            'username' => 'root',
+            'password' => 'toruneko',
+            'charset' => 'utf8',
+        ],
 
-	'params'=>array(
-        'upload' => dirname(realpath($_SERVER['SCRIPT_FILENAME'])).DIRECTORY_SEPARATOR.'upload'.DIRECTORY_SEPARATOR,
+        'cache' => [
+            'class' => 'CMemCache',
+            'useMemcached' => true,
+            'servers' => [
+                [
+                    'host' => '127.0.0.1',
+                    'port' => 11211,
+                    'weight' => 100,
+                ],
+            ]
+        ],
+
+        'thrift' => [
+            'class' => 'ThriftClient',
+            'service' => [
+                // 服务名 => 服务所在URL
+                //'wakfuservice' => 'http://proxy.toruneko.net:9356/wakfu',
+            ],
+        ],
+
+        'errorHandler' => [
+            'errorAction' => 'index/error',
+        ],
+
+        'log' => [
+            'class' => 'CLogRouter',
+            'routes' => [
+                [
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'error, warning, info',
+                ],
+            ],
+        ],
+    ],
+
+    'params' => [
+        'upload' => dirname(realpath($_SERVER['SCRIPT_FILENAME'])) . DIRECTORY_SEPARATOR . 'upload' . DIRECTORY_SEPARATOR,
         'version' => 'V1.0',
         'secretKey' => '',
         //上下级权限检测
-        'allowCheck' => array(
-            'auth' => array(
-                'assign' => array(
-                    array('role','role','post'),
-                    array('operation','operation','post'),
-                ),
-                'assignGroup' => array(
-                    array('auth','group','get'),
-                    array('user','user','get'),
-                ),
-                'assignRole' => array(
-                    array('auth','role','get'),
-                    array('user','user','get')
-                ),
-            ),
-            'user' => array(
-                'edit' => array(
-                    array('id','user','get'),
-                    array(array('UserForm','id'),'user','post'),
-                )
-            ),
-        ),
-    ),
-);
+        'allowCheck' => [
+            'auth' => [
+                'assign' => [
+                    ['role', 'role', 'post'],
+                    ['operation', 'operation', 'post'],
+                ],
+                'assignGroup' => [
+                    ['auth', 'group', 'get'],
+                    ['user', 'user', 'get'],
+                ],
+                'assignRole' => [
+                    ['auth', 'role', 'get'],
+                    ['user', 'user', 'get']
+                ],
+            ],
+            'user' => [
+                'edit' => [
+                    ['id', 'user', 'get'],
+                    [['UserForm', 'id'], 'user', 'post'],
+                ]
+            ],
+        ],
+    ],
+];

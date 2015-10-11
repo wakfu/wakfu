@@ -5,7 +5,7 @@
  * Date: 15/5/8 14:28
  * Description: ztree
  */
-$this->cs->registerCss('ztree','
+$this->cs->registerCss('ztree', '
 .ztree li span.button.add{
     margin-left: 2px;
     margin-right: -1px;
@@ -13,11 +13,11 @@ $this->cs->registerCss('ztree','
     vertical-align: top;
 }
 ');
-$this->cs->registerScript('ztree','
+$this->cs->registerScript('ztree', '
 var setting = {
     async: {
         enable: true,
-        url: "'.$asyncUrl.'",
+        url: "' . $asyncUrl . '",
         dataType: "JSON",
         autoParam:["id", "name", "level"],
         otherParam:{"operationType":"asyncLoad"},
@@ -42,7 +42,7 @@ var setting = {
             if(btn){
                 btn.bind("click", function(){
                     if(confirm("确定要创建新节点吗？")){
-                        $.post("'.$createUrl.'", {id:treeNode.id}, function(m){
+                        $.post("' . $createUrl . '", {id:treeNode.id}, function(m){
                             $.facebox(m.info);
                             if(m.status == 200){
                                 var zTree = $.fn.zTree.getZTreeObj(treeId);
@@ -78,7 +78,7 @@ var setting = {
     callback: {
         onClick: function(event, treeId, treeNode){
             admin.hide("#miniContent", 100, function($this){
-                $.post("'.$editUrl.'", {id:treeNode.id},function(m){
+                $.post("' . $editUrl . '", {id:treeNode.id},function(m){
                     if(m.status){
                         $.facebox(m.info);
                     }else{
@@ -96,7 +96,7 @@ var setting = {
             return false;
         },
         onDrop: function(event, treeId, treeNodes, targetNode, moveType){
-            $.post("'.$editUrl.'",
+            $.post("' . $editUrl . '",
                 {operationType:"drop",id:treeNodes[0].id,tid:targetNode.id}, function(m){
                 $.facebox(m.info);
             });
@@ -105,7 +105,7 @@ var setting = {
             return confirm("确定要删除["+treeNode.name+"]吗？");
         },
         onRemove: function(event, treeId, treeNode){
-            $.post("'.$removeUrl.'", {id:treeNode.id}, function(m){
+            $.post("' . $removeUrl . '", {id:treeNode.id}, function(m){
                 if(m.status){
                     $.facebox(m.info);
                 }else{

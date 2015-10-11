@@ -1,13 +1,16 @@
 <?php
+
 /**
  * File: RegisterAction.php
  * User: daijianhao(toruneko@outlook.com)
  * Date: 14/11/27 23:51
  * Description: 注册用户
  */
-class RegisterAction extends RedAction{
+class RegisterAction extends RedAction
+{
 
-    public function run(){
+    public function run()
+    {
         $model = new RegisterForm();
 
         if (($post = $this->request->getPost('RegisterForm', false)) !== false) {
@@ -18,8 +21,6 @@ class RegisterAction extends RedAction{
             }
         }
 
-        $this->render('register', array(
-            'model' => $model,
-        ));
+        $this->render('register', ['model' => $model]);
     }
 }
